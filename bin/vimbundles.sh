@@ -13,14 +13,13 @@ get_bundle() {
   )
 }
 
-get_bundle alowe vim-slurper
+#get_bundle alowe vim-slurper # Specific to PivotalTracker
 get_bundle duff vim-bufonly
 get_bundle godlygeek tabular
 get_bundle leshill vim-json
 get_bundle mileszs ack.vim
 get_bundle pangloss vim-javascript
 get_bundle scrooloose nerdcommenter
-get_bundle therubymug vim-pyte
 get_bundle tpope vim-abolish
 get_bundle tpope vim-cucumber
 get_bundle tpope vim-endwise
@@ -36,6 +35,18 @@ get_bundle tpope vim-repeat
 get_bundle tpope vim-speeddating
 get_bundle tpope vim-surround
 get_bundle tpope vim-unimpaired
-get_bundle tpope vim-vividchalk
 get_bundle vim-ruby vim-ruby
+
+# Color Schemes
+get_bundle tpope vim-vividchalk
+get_bundle therubymug vim-pyte
 get_bundle wgibbs vim-irblack
+get_bundle cschlueter vim-molokai
+get_bundle scottymoon vim-twilight
+
+# Project Trees
+get_bundle scrooloose nerdtree
+get_bundle shemerey vim-project
+
+# Command-T / Fuzzysearch... could break after update
+get_bundle wincent Command-T
