@@ -14,3 +14,21 @@ augroup END
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
+
+" Setup consistent path for swp files
+if has("win32") || has("win64")
+  set directory=$TMP
+else
+  let swp_dir = '/tmp/vimswp'
+  if !isdirectory(swp_dir)
+    call mkdir(swp_dir, 'p')
+  endif
+  set directory=/tmp/vimswp
+end
+
+" Setup path for vim backups
+" if has("win32") || has("win64")
+"   "set backupdir=/path/to/dir
+" else
+"   set backupdir=
+" end
