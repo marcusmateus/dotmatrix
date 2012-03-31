@@ -110,7 +110,8 @@ function parse_git_modified {
 # Simple function to tell you if there are changes yet to be committed
 function parse_git_dirty {
   #echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)"
-  git diff --quiet HEAD &>/dev/null; [ $? == 1 ] && echo "!"
+  # git diff --quiet HEAD &>/dev/null; [ $? == 1 ] && echo "!"
+  [ $(git status --porcelain | wc -l) -gt 0 ] && echo "!"
 }
 
 # Determine the current branch and outputs it or "detached"
@@ -141,14 +142,17 @@ function _rvm_ruby_version {
 }
 
 function _rvm_gemset_name {
-  local gemset="$(rvm gemset name)"
-  [ "$gemset" != "" ] && echo "$gemset"
+  local gemsetname="$(rvm gemset name)"
+  local gemsetdir="$(rvm gemset dir)"
+  if [ "$gemsetname" != "" ] && [ "$gemsetname" != "$gemsetdir" ]; then
+    echo "$gemsetname"
+  fi
 }
 
-function __git_dirty {
-  git diff --quiet HEAD &>/dev/null 
-  [ $? == 1 ] && echo "!"
-}
+# function __git_dirty {
+#   git diff --quiet HEAD &>/dev/null 
+#   [ $? == 1 ] && echo "!"
+# }
 
 function __git_branch {
   __git_ps1 " %s"
@@ -213,11 +217,12 @@ function bash_prompt {
     echo "$R$shortie"
   }
 
+  local titlebar="\[\033]0;@\h:\W\007\]"
   local curtime="$BRACKET_COLOR[$R\D{%M}$M:$R\D{%S}$BRACKET_COLOR]"
   local whereish="$BRACKET_COLOR[$W\u$M@$G\h$M:$W$(short_pwd)$BRACKET_COLOR]"
   local rvmish="$(rvm_prompt)"
   local gitish="$(git_prompt)"
-  PS1="$whereish$rvmish$gitish$G\$$DEF"
+  PS1="$titlebar$whereish$rvmish$gitish$G\$$DEF"
 }
 
 PROMPT_COMMAND="bash_prompt"

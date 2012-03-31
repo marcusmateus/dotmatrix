@@ -36,6 +36,8 @@ get_bundle tpope vim-speeddating
 get_bundle tpope vim-surround
 get_bundle tpope vim-unimpaired
 get_bundle vim-ruby vim-ruby
+get_bundle kchmck vim-coffee-script
+get_bundle aniero vim-copy-as-rtf
 
 # Color Schemes
 get_bundle tpope vim-vividchalk
@@ -46,7 +48,9 @@ get_bundle scottymoon vim-twilight
 
 # Project Trees
 get_bundle scrooloose nerdtree
+get_bundle jistr vim-nerdtree-tabs
 get_bundle shemerey vim-project
 
 # Command-T / Fuzzysearch... could break after update
-get_bundle wincent Command-T
+# get_bundle wincent Command-T
+get_bundle kien ctrlp.vim
